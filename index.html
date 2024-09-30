@@ -1,8 +1,6 @@
+<!--  -->
+
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <html>
 
 <head>
@@ -11,7 +9,7 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="styles.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,6 +23,7 @@
     <style>
         body {
             font-family: 'Poppins', serif;
+            font-size: large;
         }
     </style>
 </head>
@@ -38,18 +37,20 @@
 
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg bg-white">
-        <div class="container-fluid d-flex justify-content-center">
-            <div class="container-md align-items-center">
+        <div class="container-sm d-flex justify-content-center ">
+            <div class="d-flex align-items-center">
                 <img src="assets/Meubel House_Logos-05.jpg" alt="Logo" />
-                <a class="navbar-brand ml-2" href="#">
-                    <strong>
-                        Furnio
+                <a class="navbar-brand ml-4" href="#">
+                    <strong class="logo-text">
+                        Funiro
                     </strong>
                 </a>
-
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
             </div>
-
-
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
@@ -66,25 +67,108 @@
                     </li>
                 </ul>
             </div>
-            <div>
-                <i class="bi bi-0-circle-fill"></i>
+
+            <div class="collapse navbar-collapse ">
+                <ul class="navbar-nav ms-auto align-items-center ">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#profile" aria-label="User Profile">
+                            <i class="bi bi-person-gear"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <!--  -->
+                        <a class="nav-link" onclick=onSearchClick() aria-label="User Profile">
+                            <i class="bi bi-search"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#fav" aria-label="Favorites">
+                            <i class="bi bi-heart"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#profile" aria-label="User Profile">
+                            <i class="bi bi-cart2"></i>
+                        </a>
+                    </li>
+                </ul>
+
             </div>
         </div>
     </nav>
 
     <!-- Main Body Content -->
     <div class="container my-5">
-        <h2>Welcome to the Website</h2>
-        <p>This is the main body content. You can add your content here.</p>
+        <div>
+            <img src="assets/landing-pg.jpg" alt="main-bg" />
+
+        </div>
     </div>
 
+    <hr>
     <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-3">
-        <p>© 2024 My Website. All Rights Reserved.</p>
+    <footer class="container my-5">
+        <div class="row">
+            <div class="col-12 col-md-4 mb-4">
+                <strong>Funiro</strong>
+                <p>268 Ly Thuong Kiet, Ward 6, District 10, Ho Chi Minh City, Vietnam</p>
+            </div>
+
+            <div class="col-6 col-md-2">
+                <p class="secondary-text">Links</p>
+                <ul class="navbar-nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" aria-current="page"><strong>Home</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" aria-current="page"><strong>Shop</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><strong>About</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><strong>Contact</strong></a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-6 col-md-2">
+                <p class="secondary-text">Help</p>
+                <ul class="navbar-nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" aria-current="page"><strong>Payment Options</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><strong>Returns</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><strong>Privacy Policies</strong></a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <p class="secondary-text">Newsletter</p>
+                <form>
+                    <div class="mb-3 d-flex">
+                        <input type="email" class="form-control" name="newsletter-subscription" id="form-email"
+                            aria-describedby="emailHelpId" placeholder="abc@mail.com" />
+                        <button type="submit" class="newsletter-btn">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="container my-5">
+            <p>© 2023 furino. All rights reverved.</p>
+        </div>
     </footer>
 
 
-    <script src="" async defer></script>
+
+    <script src="main.js" async defer></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
