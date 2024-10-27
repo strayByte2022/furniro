@@ -1,12 +1,10 @@
-<!--  -->
-
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+    <title>Funiro</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles.css">
@@ -28,14 +26,12 @@
     </style>
 </head>
 
+<?php
+include '../eshop/database/connect.php';
+
+?>
+
 <body>
-    <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-
-    <!-- region -->
-
-    <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg bg-white">
         <div class="container-sm d-flex justify-content-center ">
             <div class="d-flex align-items-center">
@@ -71,7 +67,7 @@
             <div class="collapse navbar-collapse ">
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="?section=profile" aria-label="User Profile">
+                        <a class="nav-link" href="?page=login" aria-label="User Profile">
                             <i class="bi bi-person-gear"></i>
                         </a>
                     </li>
@@ -96,13 +92,31 @@
             </div>
         </div>
     </nav>
+    <?php
+    // Check if a page is specified in the query parameter
+    $page = isset($_GET['page']) ? $_GET['page'] : 'home';
 
-    <!-- Main Body Content -->
-    <div class="container my-5">
-        <div>
-            <img src="assets/landing-pg.jpg" alt="main-bg" class="img-fluid"/>
-        </div>
-    </div>
+    // Conditionally load the appropriate content
+    switch ($page) {
+        case 'home':
+            include '../eshop/pages/home.php';  // Make a separate file for home content
+            break;
+        case 'shop':
+            include '../eshop/pages/shop.php';  // This loads shop.php only if page=shop
+            break;
+        case 'about':
+            include '../eshop/pages/about.php';
+            break;
+        case 'contact':
+            include '../eshop/pages/contact.php';
+            break;
+        case 'login':
+            include '../eshop/pages/login.php';
+            break;
+        default:
+            echo "<p>Page not found.</p>";
+    }
+    ?>
 
     <hr>
     <!-- Footer -->
@@ -165,19 +179,6 @@
             <p>© 2023 furino. All rights reverved.</p>
         </div>
     </footer>
-
-
-
-    <script src="main.js" async defer></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
-        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"></script>
 </body>
 
 </html>
