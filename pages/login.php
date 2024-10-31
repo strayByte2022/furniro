@@ -28,19 +28,19 @@
 </head>
 
 <body>
-    <div class="container d-flex align-items-center justify-content-center">
+    <div class="container d-flex align-items-center justify-content-center h-100 d-inline-block">
         <div class="card shadow" style="width: 20rem;">
             <div class="card-body">
                 <h3 class="card-title text-center mb-4">Login</h3>
-                <form method="POST" action="">
+                <form method="POST" action="./auth/login_processing.php">
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" placeholder="Enter your username">
+                        <input type="text" class="form-control" name="username" placeholder="Enter your username">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
                         <div class="input-group">
-                            <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                            <input type="password" class="form-control" name="password" placeholder="Enter your password">
                             <button class="btn btn-outline-secondary" type="button" id="togglePassword">
                                 <i class="bi bi-eye"></i>
                             </button>

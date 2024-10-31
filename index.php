@@ -27,7 +27,7 @@
 </head>
 
 <?php
-include '../eshop/database/connect.php';
+include_once '../eshop/database/connect.php';
 
 ?>
 
