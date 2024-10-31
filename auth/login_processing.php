@@ -1,11 +1,12 @@
 <?php
 require_once '../database/connect.php';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $username = $_POST['username'];
     $password = $_POST['password'];
     if (empty($username) || empty($password)) {
-        header("Location: ../index.php");
+        // header("Location: ../index.php");
     } else {
         $stmt = $conn->prepare("SELECT password FROM users WHERE username = ?");
         $stmt->bind_param("s", $username);
@@ -16,30 +17,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Fetch the stored password
             $stmt->bind_result($storedPassword);
             $stmt->fetch();
-
             // Verify the password
             if (strcmp($password, $storedPassword) == 0) { //password_verify($password, $storedPassword) can be used for hash comparison
 
                 session_start();
+                echo $username;
                 $_SESSION['username'] = $username;
-                http_response_code(200);
-                header("Location: ../index.php");
+                header("Location: ../index.php?page=home");
+                $stmt->close();
                 exit();
 
-                // send a session 
             } else {
 
-                http_response_code(401);
-                header("Location: ../index.php");
-                echo json_encode(["message" => "Invalid username or password"]);
+                header("Location: ../index.php?page=login&error=invalid-password");
+                $stmt->close();
                 exit();
             }
-        } else {
-
-            http_response_code(404);
-            header("Location: ../index.php");
-            echo json_encode(["message" => "User not found"]);
         }
-        $stmt->close();
+        else{
+            header("Location: ../index.php?page=login&error=invalid-username");
+            $stmt->close();
+            exit();
+        }
+        
     }
 }

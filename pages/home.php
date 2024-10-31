@@ -28,6 +28,7 @@
     </style>
 </head>
 
+
 <body>
     <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
@@ -36,15 +37,19 @@
     <!-- region -->
 
     <!-- Navigation Bar -->
-    
+
 
     <!-- Main Body Content -->
-    <div class="container my-5">
+
+    <div class="container my-5 text-center">
+        <p class="display-6 font-weight-bold">Welcome to Funiro
+            <?php echo isset($_SESSION['username']) ? "," . $_SESSION['username'] : ", please login!"; ?></p>
+
         <div>
-            <img src="assets/landing-pg.jpg" alt="main-bg" class="img-fluid"/>
+            <img src="assets/landing-pg.jpg" alt="main-bg" class="img-fluid" style="max-width: 800px;" />
         </div>
     </div>
-    
+
 
     <script src="main.js" async defer></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -55,7 +60,7 @@
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"></script>   
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

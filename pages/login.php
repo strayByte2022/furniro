@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,22 +27,36 @@
 </head>
 
 <body>
+    <?php
+    $error = '';
+    if (isset($_GET['error']) && $_GET['error'] = true) {
+
+        $error = 'Invalid username or password.';
+
+    }
+    ?>
     <div class="container d-flex align-items-center justify-content-center">
         <div class="card shadow" style="width: 20rem;">
             <div class="card-body">
                 <h3 class="card-title text-center mb-4">Login</h3>
+                <?php if ($error): ?>
+                    <p class="text-danger text-center"><?php echo $error; ?></p>
+                <?php endif; ?>
                 <form method="POST" action="../eshop/auth/login_processing.php" onsubmit="return validateForm()">
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
                         <p id="invalid-mail" class="h6 text-danger">Please enter an email</p>
-                        <input type="text" class="form-control" id="username" placeholder="Enter your username">
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username">
 
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <p id="invalid-password" class="h6 text-danger">Password should be 8 characters long, at least 1 uppercase and contains numbers and characters</p>
+                        <p id="invalid-password" class="h6 text-danger">Password should be 8 characters long, at least 1
+                            uppercase and contains numbers and characters</p>
                         <div class="input-group">
-                            <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                            <input type="password" class="form-control" name="password"id="password"
+                                placeholder="Enter your password">
+
                             <button class="btn btn-outline-secondary" type="button" id="togglePassword">
                                 <i class="bi bi-eye"></i>
                             </button>
@@ -61,7 +74,7 @@
         const togglePassword = document.querySelector('#togglePassword');
         const password = document.querySelector('#password');
 
-        togglePassword.addEventListener('click', function() {
+        togglePassword.addEventListener('click', function () {
             // Toggle the type attribute
             const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
             password.setAttribute('type', type);

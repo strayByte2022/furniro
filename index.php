@@ -28,6 +28,7 @@
 
 <?php
 include '../eshop/database/connect.php';
+session_start();
 ?>
 
 <body>
@@ -65,32 +66,39 @@ include '../eshop/database/connect.php';
 
             <div class="collapse navbar-collapse ">
                 <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item" id="login-button">
-                        <a class="nav-link" href="?page=login" aria-label="User Profile">
-                            <i class="bi bi-person-gear"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item" id="logout-button">
-                        <a class="nav-link" href="./index.php" aria-label="Log Out">
-                            <i class="bi bi-box-arrow-left"></i>
-                        </a>
-                    </li>
+                    <?php if (isset($_SESSION['username'])): ?>
+                            <li class="nav-item" id="logout-button">
+                                <a class="nav-link" href="#" onclick="logoutUser(event)" aria-label="Log Out">
+                                    <i class="bi bi-box-arrow-left"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item" aria-label="User Name">
+                                <span><?php echo htmlspecialchars($_SESSION['username']); ?></span>
+                            </li>
+                        <?php else: ?>
+                            <!-- Login Button -->
+                            <li class="nav-item" id="login-button">
+                                <a class="nav-link" href="?page=login" aria-label="User Profile">
+                                    <i class="bi bi-person-gear"></i>
+                                </a>
+                            </li>
+                        <?php endif; ?>
 
-                    <li class="nav-item">
-                        <a class="nav-link" onclick="onSearchClick()" aria-label="Search">
-                            <i class="bi bi-search"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="?section=favorites" aria-label="Favorites">
-                            <i class="bi bi-heart"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="?section=cart" aria-label="Shopping Cart">
-                            <i class="bi bi-cart2"></i>
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="onSearchClick()" aria-label="Search">
+                                <i class="bi bi-search"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="?section=favorites" aria-label="Favorites">
+                                <i class="bi bi-heart"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="?section=cart" aria-label="Shopping Cart">
+                                <i class="bi bi-cart2"></i>
+                            </a>
+                        </li>
                 </ul>
 
 
@@ -116,8 +124,13 @@ include '../eshop/database/connect.php';
             include '../eshop/pages/contact.php';
             break;
         case 'login':
-            include '../eshop/pages/login.php';
+            if (!isset($_SESSION['username'])) {
+                include '../eshop/pages/login.php';
+                break;
+            }
+            include '../eshop/pages/home.php';
             break;
+
         default:
             echo "<p>Page not found.</p>";
     }
