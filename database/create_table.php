@@ -1,5 +1,5 @@
 <?php 
-include '../eshop/connect.php';
+include 'connect.php';
 
 $sql = "CREATE TABLE `users_levels` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,

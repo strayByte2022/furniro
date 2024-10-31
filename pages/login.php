@@ -24,7 +24,7 @@
             font-size: large;
         }
     </style>
-    <script></script>
+
 </head>
 
 <body>
@@ -32,13 +32,16 @@
         <div class="card shadow" style="width: 20rem;">
             <div class="card-body">
                 <h3 class="card-title text-center mb-4">Login</h3>
-                <form method="POST" action="">
+                <form method="POST" action="../eshop/auth/login_processing.php" onsubmit="return validateForm()">
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
+                        <p id="invalid-mail" class="h6 text-danger">Please enter an email</p>
                         <input type="text" class="form-control" id="username" placeholder="Enter your username">
+
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
+                        <p id="invalid-password" class="h6 text-danger">Password should be 8 characters long, at least 1 uppercase and contains numbers and characters</p>
                         <div class="input-group">
                             <input type="password" class="form-control" id="password" placeholder="Enter your password">
                             <button class="btn btn-outline-secondary" type="button" id="togglePassword">
@@ -47,7 +50,7 @@
                         </div>
                     </div>
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-primary">Login</button>
+                        <button type="submit" class="btn btn-primary" id='loginButton'>Login</button>
                     </div>
                 </form>
             </div>
@@ -58,7 +61,7 @@
         const togglePassword = document.querySelector('#togglePassword');
         const password = document.querySelector('#password');
 
-        togglePassword.addEventListener('click', function () {
+        togglePassword.addEventListener('click', function() {
             // Toggle the type attribute
             const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
             password.setAttribute('type', type);
@@ -67,6 +70,50 @@
             this.classList.toggle('bi-eye');
             this.classList.toggle('bi-eye-slash');
         });
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Password validation function
+        function isValidPassword(password) {
+            const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+            return passwordRegex.test(password);
+        }
+        const emailField = document.getElementById("username");
+        const passwordField = document.getElementById("password");
+        const invalidMailMessage = document.getElementById("invalid-mail");
+        const invalidPasswordMessage = document.getElementById("invalid-password");
+
+        // Clear previous error messages
+        invalidMailMessage.style.display = "none";
+        invalidPasswordMessage.style.display = "none";
+
+        function validateForm() {
+            invalidMailMessage.style.display = "none";
+            invalidPasswordMessage.style.display = "none";
+            // Get field values
+            const email = emailField.value.trim();
+            const password = passwordField.value.trim();
+
+            let isValid = true;
+
+            // Check email format
+            if (!isValidEmail(email)) {
+                invalidMailMessage.style.display = "block";
+                isValid = false;
+            }
+
+            // Check password requirements
+            if (!isValidPassword(password)) {
+                invalidPasswordMessage.style.display = "block";
+                isValid = false;
+            }
+
+            // Prevent form submission if invalid
+            return isValid;
+        }
     </script>
 </body>
 

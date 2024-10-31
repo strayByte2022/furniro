@@ -28,7 +28,6 @@
 
 <?php
 include '../eshop/database/connect.php';
-
 ?>
 
 <body>
@@ -66,11 +65,17 @@ include '../eshop/database/connect.php';
 
             <div class="collapse navbar-collapse ">
                 <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item">
+                    <li class="nav-item" id="login-button">
                         <a class="nav-link" href="?page=login" aria-label="User Profile">
                             <i class="bi bi-person-gear"></i>
                         </a>
                     </li>
+                    <li class="nav-item" id="logout-button">
+                        <a class="nav-link" href="./index.php" aria-label="Log Out">
+                            <i class="bi bi-box-arrow-left"></i>
+                        </a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" onclick="onSearchClick()" aria-label="Search">
                             <i class="bi bi-search"></i>
@@ -179,6 +184,7 @@ include '../eshop/database/connect.php';
             <p>© 2023 furino. All rights reverved.</p>
         </div>
     </footer>
+    <script src="main.js"></script>
 </body>
 
 </html>
